@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../lib/vue-2.4.0.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <p>{{ msg }}</p>
+        <!-- 使用  v-model 指令，可以实现 表单元素和 Model 中数据的双向数据绑定 但是能运用在 表单元素中
+        input(radio, text, address, email....)   select    checkbox   textarea   -->
+        <input type="text" style="width:200px" v-model="msg">
+    </div>
+
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                msg: '嗯,就是这个样子了'
+            },
+            methods: {}
+        });
+    </script>
+</body>
+
+</html>
