@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../lib/vue-2.4.0.js"></script>
+    <style>
+        .ball {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: darkcyan;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <input type="button" value="toggle" @click="flag=!flag">
+        <transition @before-enter="beforeEnter" @enter="enter" @after-enter="afterEnter">
+            <div v-show="flag" class="ball"></div>
+        </transition>
+
+    </div>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                flag: false
+            },
+            methods: {
+                beforeEnter(el) {
+                    // 设置元素开始动画之前的起始样式
+
+                    el.style.transform = "translate(0, 0)"
+                },
+                enter(el, done) {
+                    // 设置小球完成动画之后的，结束状态
+                    el.offsetWidth
+                    el.style.transform = "translate(200px,600px)"
+                    el.style.transition = 'all 1s ease'
+                    done()
+                },
+                afterEnter(el) {
+                    // 动画完成之后，会调用 afterEnter
+                    this.flag = !this.flag
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

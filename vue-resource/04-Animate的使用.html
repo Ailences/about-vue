@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../lib/vue-2.4.0.js"></script>
+    <link rel="stylesheet" href="../lib/animate.css">
+    <!-- 入场 rollIn  离场 rollOut -->
+    <style>
+        #app {
+            padding: 150px
+        }
+        .box{
+            width: 200px;
+            height: 200px;
+            margin-top: 50px;
+            background-color:lightgreen;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <input type="button" value="toggle" @click="flag=!flag">
+        <!-- <transition enter-active-class="rollIn animated" leave-active-class="rollOut animated" :duration="{ enter: 2000, leave: 4000 }">
+            <div v-show="flag" class="box"></div>
+        </transition> -->
+        <transition enter-active-class="rollIn" leave-active-class="rollOut" :duration="{ enter: 2000, leave: 4000 }">
+            <div v-show="flag" class="box animated"></div>
+        </transition>
+    </div>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                flag: false
+            },
+            methods: {}
+        })
+    </script>
+</body>
+
+</html>
