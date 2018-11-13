@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../lib/vue-2.4.0.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <mycom1></mycom1>
+        <hr>
+        <mycom2></mycom2>
+        <hr>
+        <mycom3></mycom3>
+
+        <template id="tmp1">
+            <div>
+                <h3>通过 template 元素定义组件结构</h3>
+                <span>推荐的用法</span>
+            </div>
+        </template>
+    </div>
+    <script>
+        // 1. extend方法创建组件对象, 使用component方法来注册
+        Vue.component('mycom1', Vue.extend({
+            template: '<h3>使用 Vue.extend 创建组件</h3>'
+        }))
+
+        // 2. 直接创建组件对象, 使用component方法注册
+        Vue.component('mycom2', {
+            template: '<div> <h3> 直接使用 Vue.component 创建出来的组件 </h3> <span> 123 </span> </div>'
+        })
+
+        // 3. 在HTML中写好模板代码, 使用component方法通过ID注册
+        Vue.component('mycom3', {
+            template: '#tem1'
+        })
+
+
+        var vm = new Vue({
+            el: '#app',
+            data: {},
+            methods: {}
+        })
+    </script>
+</body>
+
+</html>
