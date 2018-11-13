@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../lib/vue-2.4.0.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <quanju></quanju>
+        <!-- 私有组件只能自己使用 -->
+        <!-- <siyou></siyou> -->
+    </div>
+
+    <div id="app2">
+        <quanju></quanju>
+        <siyou></siyou>
+    </div>
+    <template id="tmp1">
+        <h1>这是全局组件的模板</h1>
+    </template>
+
+
+    <template id="tmp2">
+        <h2>这是私有组件</h2>
+    </template>
+    <script>
+        // 全局组件
+        Vue.component('quanju', {
+            template: '#tmp1'
+        })
+
+        var vm = new Vue({
+            el: '#app',
+            data: {},
+            methods: {}
+        })
+
+        var vm2 = new Vue({
+            el: '#app2',
+            data: {},
+            methods: {},
+            components: { // components 来注册私有组件
+                siyou: {
+                    template: '#tmp2'
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
