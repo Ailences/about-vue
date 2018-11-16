@@ -20,10 +20,9 @@
             <h1>这是商品列表页</h1>
             <ul>
                 <li v-for="item in list" :key="item.id">
-                    <router-link to="'/detail/'+item.id">
-                        {{item.name}}
+                    <router-link :to="'/detail/'+item.id+'/'+item.name">
+                        {{ item.name }}
                     </router-link>
-
                 </li>
             </ul>
         </div>
@@ -38,6 +37,15 @@
                 }, {
                     id: 2,
                     name: '这是商品2'
+                }, {
+                    id: 3,
+                    name: '这是商品3'
+                }, {
+                    id: 4,
+                    name: '这是商品4'
+                }, {
+                    id: 5,
+                    name: '这是商品5'
                 }]
                 return {
                     list
@@ -48,9 +56,9 @@
             // },
         }
         var detail = {
-            template: '<h1>商品详情页---{{$route.params.name}}</h1>'
+            template: '<h1>商品详情页---{{$route.params.id}}-----{{$route.params.name}}</h1>'
         }
-        const router = new VueRouter({
+        var router = new VueRouter({
             routes: [{
                 path: '/',
                 redirect: '/account'
@@ -58,7 +66,7 @@
                 path: '/account',
                 component: account
             }, {
-                path: 'detail/:id',
+                path: '/detail/:id/:name',
                 component: detail
             }]
         })
