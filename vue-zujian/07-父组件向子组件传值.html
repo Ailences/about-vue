@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../lib/vue-2.4.0.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <son :parentmsg="msg"></son>
+    </div>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                msg: '1234---这是父组件中的数据'
+            },
+            methods: {},
+            components: { // 子组件
+                son: { // 组件的data属性必须是一个function, 并且该函数内部要返回一个对象
+                    data() {
+                        return {
+                            title: '123',
+                            content: '啦啦啦啦啦'
+                        }
+                    },
+                    template: '<h1 @click="change">这是子组件 --- {{ parentmsg }} </h1>',
+                    // props中的数据,
+                    // 只能通过父组件进行修改,
+                    // 子组件中不要进行修改,
+                    // 因为该数据是单向下行绑定的,
+                    // 也就是说只有父组件修改了会更新所有子组件中用到的数据,
+                    // 但子组件修改不会反向更新到父组件或其他子组件
+                    props: ['parentmsg'],
+                    methods: {
+                        change() {
+                            this.parentmsg = '被修改了'
+                        }
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

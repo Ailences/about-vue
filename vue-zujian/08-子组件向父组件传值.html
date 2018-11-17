@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../lib/vue-2.4.0.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <son @func="show"></son>
+    </div>
+
+    <template id="tmpl">
+        <div>
+            <h1>这是子组件</h1>
+            <input type="button" value="子组件中的按钮" @click="sonClick">
+        </div>
+    </template>
+    <script>
+        var son = {
+            template: '#tmpl',
+            data() {
+                return {
+                    sonData: '这是子组件的数据'
+                }
+            },
+            methods: {
+                sonClick() {
+                    this.$emit('func', this.sonData)
+                }
+            }
+        }
+        var vm = new Vue({
+            el: '#app',
+            data: {},
+            methods: {
+                show(data) {
+                    console.log('这是子组件传过来的数据' +'--------'+ data);
+                }
+            },
+            components:{
+                son
+            }
+        })
+    </script>
+</body>
+
+</html>
