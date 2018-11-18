@@ -40,6 +40,19 @@ module.exports = {
                     loader: "sass-loader"
                 }
             ]
+        }, {
+            test: /\.(jpg|png|gif|bmp|jpeg|webp)$/,
+            use: [{
+                loader: 'url-loader?limit=4222&name=[hash]-[name].[ext]',
+                // options:{
+                //     limit: 4444
+                //     // 88352dd9a512d1e07fcec4f027efc5c5
+                //     // 88352dd9a512d1e07fcec4f027efc5c5
+                // }
+            }]
+        }, {
+            test: /.(eot|ttf|woff|woff2|svg)$/,
+            use: 'url-loader',
         }]
     },
     plugins: [
